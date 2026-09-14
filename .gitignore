@@ -1,0 +1,19 @@
+# Xcode and Swift build products
+build/
+build-*/
+DerivedData/
+dist/
+*.dSYM
+
+# Local binaries are regenerated from tools/lg-volume.swift
+bin/
+
+# Xcode per-user state
+xcuserdata/
+*.xcuserstate
+
+# Local automation, backups, and machine-specific state
+.hermes/
+
+# macOS Finder metadata
+.DS_Store

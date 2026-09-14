@@ -1,0 +1,244 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		200000000000000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000001 /* AppDelegate.swift */; };
+		200000000000000000000002 /* DisplayIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000002 /* DisplayIdentity.swift */; };
+		200000000000000000000003 /* FocusScreenResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000003 /* FocusScreenResolver.swift */; };
+		200000000000000000000004 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000004 /* KeychainStore.swift */; };
+		200000000000000000000005 /* MediaKeyCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000005 /* MediaKeyCapture.swift */; };
+		200000000000000000000006 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000006 /* MenuBarController.swift */; };
+		200000000000000000000007 /* RouterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000007 /* RouterSettings.swift */; };
+		200000000000000000000008 /* VolumeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000008 /* VolumeRouter.swift */; };
+		200000000000000000000009 /* WebOSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000009 /* WebOSMessage.swift */; };
+		200000000000000000000010 /* WebOSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000010 /* WebOSProvider.swift */; };
+		200000000000000000000011 /* ProductConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000011 /* ProductConfiguration.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		100000000000000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		100000000000000000000002 /* DisplayIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayIdentity.swift; sourceTree = "<group>"; };
+		100000000000000000000003 /* FocusScreenResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusScreenResolver.swift; sourceTree = "<group>"; };
+		100000000000000000000004 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		100000000000000000000005 /* MediaKeyCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyCapture.swift; sourceTree = "<group>"; };
+		100000000000000000000006 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		100000000000000000000007 /* RouterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterSettings.swift; sourceTree = "<group>"; };
+		100000000000000000000008 /* VolumeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeRouter.swift; sourceTree = "<group>"; };
+		100000000000000000000009 /* WebOSMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebOSMessage.swift; sourceTree = "<group>"; };
+		100000000000000000000010 /* WebOSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebOSProvider.swift; sourceTree = "<group>"; };
+		100000000000000000000011 /* ProductConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductConfiguration.swift; sourceTree = "<group>"; };
+		500000000000000000000001 /* LGVolumeRouter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGVolumeRouter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		700000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		300000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				400000000000000000000001 /* LGVolumeRouter */,
+				300000000000000000000002 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		400000000000000000000001 /* LGVolumeRouter */ = {
+			isa = PBXGroup;
+			children = (
+				100000000000000000000001 /* AppDelegate.swift */,
+				100000000000000000000011 /* ProductConfiguration.swift */,
+				100000000000000000000002 /* DisplayIdentity.swift */,
+				100000000000000000000003 /* FocusScreenResolver.swift */,
+				100000000000000000000004 /* KeychainStore.swift */,
+				100000000000000000000005 /* MediaKeyCapture.swift */,
+				100000000000000000000006 /* MenuBarController.swift */,
+				100000000000000000000007 /* RouterSettings.swift */,
+				100000000000000000000008 /* VolumeRouter.swift */,
+				100000000000000000000009 /* WebOSMessage.swift */,
+				100000000000000000000010 /* WebOSProvider.swift */,
+			);
+			path = LGVolumeRouter;
+			sourceTree = "<group>";
+		};
+		300000000000000000000002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				500000000000000000000001 /* LGVolumeRouter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		600000000000000000000001 /* LGVolumeRouter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A000000000000000000000001 /* Build configuration list for PBXNativeTarget "LGVolumeRouter" */;
+			buildPhases = (
+				800000000000000000000001 /* Sources */,
+				700000000000000000000001 /* Frameworks */,
+				900000000000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LGVolumeRouter;
+			productName = LGVolumeRouter;
+			productReference = 500000000000000000000001 /* LGVolumeRouter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		310000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					600000000000000000000001 = {
+						CreatedOnToolsVersion = 2600;
+					};
+				};
+			};
+			buildConfigurationList = B000000000000000000000001 /* Build configuration list for PBXProject "LGVolumeRouter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 300000000000000000000001;
+			productRefGroup = 300000000000000000000002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				600000000000000000000001 /* LGVolumeRouter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		900000000000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		800000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				200000000000000000000001 /* AppDelegate.swift in Sources */,
+				200000000000000000000011 /* ProductConfiguration.swift in Sources */,
+				200000000000000000000002 /* DisplayIdentity.swift in Sources */,
+				200000000000000000000003 /* FocusScreenResolver.swift in Sources */,
+				200000000000000000000004 /* KeychainStore.swift in Sources */,
+				200000000000000000000005 /* MediaKeyCapture.swift in Sources */,
+				200000000000000000000006 /* MenuBarController.swift in Sources */,
+				200000000000000000000007 /* RouterSettings.swift in Sources */,
+				200000000000000000000008 /* VolumeRouter.swift in Sources */,
+				200000000000000000000009 /* WebOSMessage.swift in Sources */,
+				200000000000000000000010 /* WebOSProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B100000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B100000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A100000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "LG Volume Router";
+				INFOPLIST_KEY_LSUIElement = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.mfang0126.LGVolumeRouter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A100000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "LG Volume Router";
+				INFOPLIST_KEY_LSUIElement = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.mfang0126.LGVolumeRouter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A000000000000000000000001 /* Build configuration list for PBXNativeTarget "LGVolumeRouter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000000000000000000001 /* Debug */,
+				A100000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B000000000000000000000001 /* Build configuration list for PBXProject "LGVolumeRouter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B100000000000000000000001 /* Debug */,
+				B100000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 310000000000000000000001 /* Project object */;
+}
