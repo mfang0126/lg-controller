@@ -1,15 +1,16 @@
-# LG Volume Router
+# LG Volume Router — macOS 状态栏 App：用 Mac 音量键控制 LG webOS TV 音量
 
 [English README](README.md)
 
-一个原生 macOS 状态栏 App 与配套 CLI：它会识别**当前获得焦点的窗口所在显示器**，将该显示器配置对应的 macOS 媒体音量键路由到同一局域网内的 LG webOS TV。
+一个原生 macOS 状态栏 App 与配套 CLI：当 LG webOS TV 是 Mac 的当前声音输出设备时，它将 macOS 媒体音量键路由到这台电视——音量键永远调节你正在听到的声音。
 
-> **v0.1.0 发布状态：**以 [MIT License](LICENSE) 公开发布**源码**。请从 tag 对应源码在本地自行编译；不会提供预编译 App/CLI，也没有 Developer ID 签名或 Apple notarization。
+> **v0.2.0 发布状态：**以 [MIT License](LICENSE) 公开发布**源码**。请从 tag 对应源码在本地自行编译；不会提供预编译 App/CLI，也没有 Developer ID 签名或 Apple notarization。v0.2.0 将路由判据从「焦点显示器匹配」改为「声音输出设备匹配」；老用户需在 **Configure…** 中重新选择一次电视的声音输出设备（见 [Changelog](CHANGELOG.md)）。
 
 ## 功能
 
-- **按显示器路由：**根据焦点窗口所在显示器匹配已配置的 LG webOS TV，只路由音量加、音量减与静音键。
-- **保留 macOS 原有行为：**关闭路由、没有 Accessibility 权限、焦点显示器不匹配或未配置 TV 时，不拦截媒体键，macOS 继续正常处理。
+- **按声音输出路由：**仅当 macOS 默认声音输出是已配置的 LG webOS TV 音频设备时，才路由音量加、音量减与静音键——音量键永远调节你正在听到的设备。AirPlay 输出始终放行，因为 macOS 本就能直接调节它。
+- **手动 override：**三种模式——**当电视是声音输出时**（默认）、**始终路由到电视**、**从不路由到电视**。
+- **保留 macOS 原有行为：**关闭路由、没有 Accessibility 权限、声音输出不是已配置的 TV 或未配置 TV 时，不拦截媒体键，macOS 继续正常处理。
 - **本地 webOS 控制：**通过局域网 WSS 上的 webOS Secure Simple Access Protocol（SSAP）完成配对、状态读取、音量控制与静音。
 - **极简状态栏界面：**一个路由开关、一个配置窗口；状态栏图标显示最近一次读到的 TV 音频状态。
 - **只读连接测试：**`Test connection` 仅读取 TV 音频状态，不会修改音量或静音。
@@ -55,12 +56,12 @@ make run-app
 1. 启动 `LGVolumeRouter.app`。
 2. 点击状态栏图标，选择 **Configure…**。
 3. 输入 TV 的本地 hostname 或 IP 地址。
-4. 选择当焦点窗口位于其上时应路由到这台 TV 的显示器。
+4. 选择电视的声音输出设备（例如以电视命名的 HDMI 设备）和路由模式。
 5. 点击 **Test connection**。若电视提示配对，请在电视上批准。测试会读取音频状态，但不会改动声音。
 6. 在菜单中打开 **Volume routing**。
 7. macOS 提示时，为 App 授予 Accessibility 权限。该授权完全由 macOS 管理，App 不能授予、绕过或自动完成它。
 
-App 会将非秘密的 TV endpoint/显示器选择保存在本机 UserDefaults，将 webOS client key 保存在 macOS Keychain。两者都不应导出、提交到仓库或分享。
+App 会将非秘密的 TV endpoint/音频设备选择保存在本机 UserDefaults，将 webOS client key 保存在 macOS Keychain。两者都不应导出、提交到仓库或分享。
 
 ### 状态栏图标
 

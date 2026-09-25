@@ -8,7 +8,7 @@ LG Volume Router controls a TV reachable on the user's local network. It does no
 
 | Data | Storage | Repository policy |
 |---|---|---|
-| TV host, port, protocol, target-display selection, routing preference | Local UserDefaults | Never commit exports or machine state. |
+| TV host, port, protocol, target audio-device selection, routing preference | Local UserDefaults | Never commit exports or machine state. |
 | webOS client key | Host-scoped macOS Keychain item | Never log, print, export, or commit. |
 | TV volume/mute readback | In-memory provider cache | Not persisted as a history. |
 | macOS Accessibility permission | macOS TCC database | The app cannot grant, bypass, or replace this permission. |

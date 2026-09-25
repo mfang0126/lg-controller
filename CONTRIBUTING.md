@@ -33,7 +33,7 @@ Then perform the relevant manual check on a non-production TV:
 - app launches and config window opens;
 - **Test connection** reads status without changing audio;
 - `lg-volume pair|status|up|down|mute` behaves as documented;
-- the app only routes a media key for the configured focused display;
+- the app only routes a media key while the configured TV is the current sound output;
 - the menu-bar icon follows the documented audio-state mapping.
 
 Never paste a real TV address or pairing key into an issue, commit, screenshot, or pull-request description.

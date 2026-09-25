@@ -1,15 +1,16 @@
-# LG Volume Router
+# LG Volume Router — macOS menu-bar app: Mac volume keys control your LG webOS TV
 
 [中文说明](README.zh-CN.md)
 
-A native macOS menu-bar app and companion CLI that route macOS media-volume keys to the LG webOS TV associated with the display that currently owns focus.
+A native macOS menu-bar app and companion CLI that route macOS media-volume keys to your LG webOS TV whenever that TV is the Mac's current sound output — so the volume keys always adjust what you are actually hearing.
 
-> **Release status — v0.1.0:** public **source-only** release under the [MIT License](LICENSE). Build it locally from the tagged source. No prebuilt App or CLI binary is published, and the project is not Developer ID signed or notarized.
+> **Release status — v0.2.0:** public **source-only** release under the [MIT License](LICENSE). Build it locally from the tagged source. No prebuilt App or CLI binary is published, and the project is not Developer ID signed or notarized. v0.2.0 changes routing from focused-display matching to sound-output matching; existing users re-select the TV's sound output device once in **Configure…** (see [Changelog](CHANGELOG.md)).
 
 ## Features
 
-- **Display-aware routing:** maps the focused macOS window to a configured display, then routes volume up, volume down, or mute only to that display's LG webOS TV.
-- **Preserves normal macOS behavior:** when routing is off, Accessibility is unavailable, no focused display matches, or no TV is configured, the original media key is left for macOS.
+- **Output-aware routing:** routes volume up, volume down, or mute to the configured LG webOS TV only while macOS's default sound output is that TV's audio device — the volume keys always control what you are hearing. AirPlay outputs always pass through because macOS can already adjust them.
+- **Manual override:** three modes — **When the TV is the sound output** (default), **Always to the TV**, and **Never to the TV**.
+- **Preserves normal macOS behavior:** when routing is off, Accessibility is unavailable, the sound output is not the configured TV, or no TV is configured, the original media key is left for macOS.
 - **Local webOS control:** uses webOS Secure Simple Access Protocol (SSAP) over local WSS for pairing, status reads, volume control, and mute.
 - **Minimal menu bar app:** one routing switch, a configuration window, and a menu-bar icon that reflects last-known TV audio state.
 - **Safe connection test:** **Test connection** performs an audio-state read only. It never changes volume or mute.
@@ -55,12 +56,12 @@ The resulting App is a local build, not a notarized consumer distribution. macOS
 1. Launch `LGVolumeRouter.app`.
 2. Select the menu-bar icon, then choose **Configure…**.
 3. Enter the TV's local hostname or IP address.
-4. Choose the display that should route its focused-window media keys to this TV.
+4. Choose the TV's sound output device (for example the HDMI device named after the TV) and the routing mode.
 5. Choose **Test connection**. If the TV requests pairing, approve it on the TV. The test reads TV audio state; it does not change audio.
 6. Turn on **Volume routing** in the menu.
 7. When macOS asks, grant Accessibility permission to the App. macOS owns this approval; the App cannot grant, bypass, or automate it.
 
-The App stores non-secret endpoint/display settings in local UserDefaults and stores the webOS client key in the macOS Keychain. Never commit, export, or share either as project files.
+The App stores non-secret endpoint/audio-device settings in local UserDefaults and stores the webOS client key in the macOS Keychain. Never commit, export, or share either as project files.
 
 ### Menu-bar icon
 

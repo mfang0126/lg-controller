@@ -2,7 +2,7 @@
 
 ## Purpose
 
-LG Volume Router maps a macOS media-key action to the LG webOS TV configured for the display containing the focused macOS window. The macOS app handles focus and Accessibility-sensitive input; the CLI reuses only the local-control and storage layers.
+LG Volume Router maps a macOS media-key action to the LG webOS TV configured as the Mac's sound output. Whenever macOS's default output device is the configured TV's audio device (and the output is not AirPlay), the volume keys control that TV over the local network; otherwise the keys are left to macOS. The macOS app handles Accessibility-sensitive input; the CLI reuses only the local-control and storage layers.
 
 ## Components
 
@@ -12,8 +12,9 @@ LG Volume Router maps a macOS media-key action to the LG webOS TV configured for
 | `MenuBarController` | Owns menu/configuration UI and maps cached TV state to an SF Symbol. | UI is always updated on the main queue. |
 | `VolumeRouter` | Decides whether a media key should be routed and queues a provider command. | Never changes macOS volume itself. |
 | `MediaKeyCapture` | Installs the global event tap after macOS Accessibility has been granted. | Required for app media-key capture; absent from CLI. |
-| `FocusScreenResolver` | Resolves the focused window into a display identity. | Uses Accessibility geometry, not display names alone. |
-| `RouterSettings` | Persists non-secret TV/display configuration. | No pairing key or credential storage. |
+| `RoutingPolicy` | Pure decision: route only when the default output device is the configured TV (AirPlay always passes through; Auto/Always/Never override). | Free of AppKit/CoreAudio; covered by `make test`. |
+| `AudioOutputResolver` | Reads the macOS default output device and enumerates output-capable devices via CoreAudio. | Decision-time resolution; no device-name assumptions. |
+| `RouterSettings` | Persists non-secret TV/audio-device configuration. | No pairing key or credential storage. |
 | `KeychainStore` | Stores a host-scoped webOS client key. | Keychain only; no repository persistence. |
 | `WebOSProvider` | Serializes WSS lifecycle, pairing, reads, and volume/mute commands. | Its state queue is the single owner of session state. |
 | `WebOSMessage` | Defines SSAP payloads and tolerant JSON parsing. | Registers audio-read and audio-control permissions. |
@@ -25,13 +26,12 @@ LG Volume Router maps a macOS media-key action to the LG webOS TV configured for
 media key
   -> MediaKeyCapture
   -> VolumeRouter
-  -> FocusScreenResolver
-  -> RouterSettings display match
+  -> RoutingPolicy (AudioOutputResolver: default output device)
   -> WebOSProvider serialized WSS command
   -> LG webOS TV
 ```
 
-The router ignores a key when routing is disabled, macOS Accessibility is unavailable, there is no focused-window/display match, or the matched display has no configured TV. In those cases it does not synthesize or change macOS volume.
+The router ignores a key when routing is disabled, macOS Accessibility is unavailable, the current sound output is not the configured TV's audio device (or is AirPlay), the override is Never, or no TV is configured. In those cases it does not synthesize or change macOS volume.
 
 ## Pairing and storage flow
 
