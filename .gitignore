@@ -13,6 +13,7 @@ xcuserdata/
 *.xcuserstate
 
 # Local automation, backups, and machine-specific state
+.harness/
 .hermes/
 
 # macOS Finder metadata
