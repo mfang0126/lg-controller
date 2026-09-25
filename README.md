@@ -1,10 +1,10 @@
-# LG Volume Router — macOS menu-bar app: Mac volume keys control your LG webOS TV
+# LG Controller (LG 遥控器) — macOS menu-bar app: Mac volume keys control your LG webOS TV
 
 [中文说明](README.zh-CN.md)
 
 A native macOS menu-bar app and companion CLI that route macOS media-volume keys to your LG webOS TV whenever that TV is the Mac's current sound output — so the volume keys always adjust what you are actually hearing.
 
-> **Release status — v0.2.0:** public **source-only** release under the [MIT License](LICENSE). Build it locally from the tagged source. No prebuilt App or CLI binary is published, and the project is not Developer ID signed or notarized. v0.2.0 changes routing from focused-display matching to sound-output matching; existing users re-select the TV's sound output device once in **Configure…** (see [Changelog](CHANGELOG.md)).
+> **Release status — v0.3.0:** public **source-only** release under the [MIT License](LICENSE). Build it locally from the tagged source. No prebuilt App or CLI binary is published, and the project is not Developer ID signed or notarized. The app was formerly named **LG Volume Router** (repo `lg-webos-volume-router` / `macos-lg-tv-volume`); v0.2.0 changed routing from focused-display matching to sound-output matching — upgrading users re-select the TV's sound output device once in **Set up TV…** (see [Changelog](CHANGELOG.md)).
 
 ## Features
 
@@ -12,7 +12,8 @@ A native macOS menu-bar app and companion CLI that route macOS media-volume keys
 - **Manual override:** three modes — **When the TV is the sound output** (default), **Always to the TV**, and **Never to the TV**.
 - **Preserves normal macOS behavior:** when routing is off, Accessibility is unavailable, the sound output is not the configured TV, or no TV is configured, the original media key is left for macOS.
 - **Local webOS control:** uses webOS Secure Simple Access Protocol (SSAP) over local WSS for pairing, status reads, volume control, and mute.
-- **Minimal menu bar app:** one routing switch, a configuration window, and a menu-bar icon that reflects last-known TV audio state.
+- **Minimal menu bar app:** one switch, a two-step setup window, and a menu-bar icon that reflects last-known TV audio state.
+- **Child-simple and bilingual:** every screen speaks plain English and 中文 side by side; setup is "pick your TV, press Test" and everything rarely changed lives under Advanced.
 - **Safe connection test:** **Test connection** performs an audio-state read only. It never changes volume or mute.
 - **Standalone CLI:** supports `pair`, `status`, `up`, `down`, and `mute` without macOS Accessibility permission.
 - **Shared local pairing:** the App and CLI use the same configuration domain and macOS Keychain service, so they can share an approved TV pairing.
@@ -31,8 +32,8 @@ This project is not affiliated with, endorsed by, or sponsored by LG Electronics
 Clone the repository and build both components:
 
 ```sh
-git clone https://github.com/mfang0126/lg-webos-volume-router.git
-cd lg-webos-volume-router
+git clone https://github.com/mfang0126/lg-controller.git
+cd lg-controller
 make all
 ```
 
@@ -53,13 +54,14 @@ The resulting App is a local build, not a notarized consumer distribution. macOS
 
 ## Configure the App
 
-1. Launch `LGVolumeRouter.app`.
-2. Select the menu-bar icon, then choose **Configure…**.
-3. Enter the TV's local hostname or IP address.
-4. Choose the TV's sound output device (for example the HDMI device named after the TV) and the routing mode.
-5. Choose **Test connection**. If the TV requests pairing, approve it on the TV. The test reads TV audio state; it does not change audio.
-6. Turn on **Volume routing** in the menu.
-7. When macOS asks, grant Accessibility permission to the App. macOS owns this approval; the App cannot grant, bypass, or automate it.
+1. Launch the app — it shows as **LG Controller** in the menu bar.
+2. Select the menu-bar icon, then choose **Set up TV… / 设置电视…**.
+3. **Your LG webOS TV:** pick your TV from the sound-output list (it defaults to the current sound output).
+4. **TV address + Test** sit side by side: enter the address, press **Test**. If the TV requests pairing, approve it on the TV. The test reads TV audio state; it does not change audio.
+5. Turn on **Control TV volume** in the menu.
+6. When macOS asks, grant Accessibility permission once and restart the app. macOS owns this approval; the App cannot grant, bypass, or automate it.
+
+Rarely changed things — when-to-control mode (Auto/Always/Never), protocol, port, and **Forget TV pairing** — live under **Advanced / 高级设置**.
 
 The App stores non-secret endpoint/audio-device settings in local UserDefaults and stores the webOS client key in the macOS Keychain. Never commit, export, or share either as project files.
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-LG Volume Router maps a macOS media-key action to the LG webOS TV configured as the Mac's sound output. Whenever macOS's default output device is the configured TV's audio device (and the output is not AirPlay), the volume keys control that TV over the local network; otherwise the keys are left to macOS. The macOS app handles Accessibility-sensitive input; the CLI reuses only the local-control and storage layers.
+LG Controller (formerly LG Volume Router) maps a macOS media-key action to the LG webOS TV configured as the Mac's sound output. Whenever macOS's default output device is the configured TV's audio device (and the output is not AirPlay), the volume keys control that TV over the local network; otherwise the keys are left to macOS. The macOS app handles Accessibility-sensitive input; the CLI reuses only the local-control and storage layers.
 
 ## Components
 

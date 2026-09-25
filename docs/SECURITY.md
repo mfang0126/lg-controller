@@ -2,7 +2,7 @@
 
 ## Scope
 
-LG Volume Router controls a TV reachable on the user's local network. It does not provide an account system, cloud service, analytics pipeline, telemetry backend, or remote-control relay.
+LG Controller (formerly LG Volume Router) controls a TV reachable on the user's local network. It does not provide an account system, cloud service, analytics pipeline, telemetry backend, or remote-control relay.
 
 ## Data handling
 

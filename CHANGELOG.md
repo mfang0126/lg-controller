@@ -2,6 +2,19 @@
 
 All notable changes to LG Volume Router are documented here.
 
+## 0.3.0 — 2026-09-25
+
+### Changed
+
+- **Renamed: LG Volume Router → LG Controller (LG 遥控器).** The GitHub repo is now `lg-controller` (old URLs redirect). Bundle id, Keychain service, and pairing are unchanged.
+- **Child-simple bilingual UI:** every string is plain English + 中文 side by side. The menu switch is now "Control TV volume / 控制电视音量"; configuration is "Set up TV… / 设置电视…".
+- **Two-step setup:** pick your TV from the sound-output list (defaults to the current sound output, with a one-line explanation), then TV address + **Test** side by side.
+- **Advanced / 高级设置** now holds everything rarely changed: when-to-control mode (Auto/Always/Never), protocol, port, and **Forget TV pairing**.
+
+### Notes
+
+- Upgrading users: grant Accessibility once more (the rebuilt binary is a new identity), then restart the app — the grant only takes effect after a restart.
+
 ## 0.2.0 — 2026-09-25
 
 ### Changed (behavior change)

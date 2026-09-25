@@ -1,10 +1,10 @@
-# LG Volume Router — macOS 状态栏 App：用 Mac 音量键控制 LG webOS TV 音量
+# LG Controller（LG 遥控器）— macOS 状态栏 App：用 Mac 音量键控制 LG webOS TV 音量
 
 [English README](README.md)
 
 一个原生 macOS 状态栏 App 与配套 CLI：当 LG webOS TV 是 Mac 的当前声音输出设备时，它将 macOS 媒体音量键路由到这台电视——音量键永远调节你正在听到的声音。
 
-> **v0.2.0 发布状态：**以 [MIT License](LICENSE) 公开发布**源码**。请从 tag 对应源码在本地自行编译；不会提供预编译 App/CLI，也没有 Developer ID 签名或 Apple notarization。v0.2.0 将路由判据从「焦点显示器匹配」改为「声音输出设备匹配」；老用户需在 **Configure…** 中重新选择一次电视的声音输出设备（见 [Changelog](CHANGELOG.md)）。
+> **v0.3.0 发布状态：**以 [MIT License](LICENSE) 公开发布**源码**。请从 tag 对应源码在本地自行编译；不会提供预编译 App/CLI，也没有 Developer ID 签名或 Apple notarization。App 原名 **LG Volume Router**（repo `lg-webos-volume-router` / `macos-lg-tv-volume`）；v0.2.0 起路由判据改为「声音输出设备匹配」——升级用户需在 **Set up TV… / 设置电视…** 中重新选择一次电视（见 [Changelog](CHANGELOG.md)）。
 
 ## 功能
 
@@ -12,7 +12,8 @@
 - **手动 override：**三种模式——**当电视是声音输出时**（默认）、**始终路由到电视**、**从不路由到电视**。
 - **保留 macOS 原有行为：**关闭路由、没有 Accessibility 权限、声音输出不是已配置的 TV 或未配置 TV 时，不拦截媒体键，macOS 继续正常处理。
 - **本地 webOS 控制：**通过局域网 WSS 上的 webOS Secure Simple Access Protocol（SSAP）完成配对、状态读取、音量控制与静音。
-- **极简状态栏界面：**一个路由开关、一个配置窗口；状态栏图标显示最近一次读到的 TV 音频状态。
+- **极简状态栏界面：**一个开关、两步设置窗口；状态栏图标显示最近一次读到的 TV 音频状态。
+- **孩子都能用，中英双语：**所有界面都是英文 + 中文并排；设置就两步「选电视、点测试」，不常用的都收进 Advanced。
 - **只读连接测试：**`Test connection` 仅读取 TV 音频状态，不会修改音量或静音。
 - **独立 CLI：**提供 `pair`、`status`、`up`、`down`、`mute`，不需要 macOS Accessibility 权限。
 - **共用本地配对：**App 和 CLI 使用相同的配置域与 macOS Keychain service，可以共用已授权的 TV 配对信息。
@@ -31,8 +32,8 @@
 克隆仓库并构建 App 与 CLI：
 
 ```sh
-git clone https://github.com/mfang0126/lg-webos-volume-router.git
-cd lg-webos-volume-router
+git clone https://github.com/mfang0126/lg-controller.git
+cd lg-controller
 make all
 ```
 
@@ -53,13 +54,14 @@ make run-app
 
 ## 配置 App
 
-1. 启动 `LGVolumeRouter.app`。
-2. 点击状态栏图标，选择 **Configure…**。
-3. 输入 TV 的本地 hostname 或 IP 地址。
-4. 选择电视的声音输出设备（例如以电视命名的 HDMI 设备）和路由模式。
-5. 点击 **Test connection**。若电视提示配对，请在电视上批准。测试会读取音频状态，但不会改动声音。
-6. 在菜单中打开 **Volume routing**。
-7. macOS 提示时，为 App 授予 Accessibility 权限。该授权完全由 macOS 管理，App 不能授予、绕过或自动完成它。
+1. 启动 App——菜单栏里显示为 **LG Controller**。
+2. 点击状态栏图标，选择 **Set up TV… / 设置电视…**。
+3. **你的 LG webOS 电视：**从声音输出列表里选你的电视（默认已选中当前声音输出）。
+4. **电视地址 + Test 并排：**输入地址，点 **Test / 测试**。若电视提示配对，请在电视上批准。测试只读取音频状态，不会改动声音。
+5. 在菜单中打开 **Control TV volume / 控制电视音量**。
+6. macOS 提示时授予一次 Accessibility 权限并重启 App。该授权完全由 macOS 管理，App 不能授予、绕过或自动完成它。
+
+不常改的东西——何时控制电视（Auto/Always/Never）、协议、端口、**取消配对**——都收在 **Advanced / 高级设置** 里。
 
 App 会将非秘密的 TV endpoint/音频设备选择保存在本机 UserDefaults，将 webOS client key 保存在 macOS Keychain。两者都不应导出、提交到仓库或分享。
 
