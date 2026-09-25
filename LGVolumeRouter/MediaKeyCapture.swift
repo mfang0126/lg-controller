@@ -1,4 +1,5 @@
 import AppKit
+import ApplicationServices
 import CoreGraphics
 import Foundation
 
@@ -11,6 +12,12 @@ enum MediaKeyAction {
 /// Installs a narrow global event tap for the three media-key actions this app can route.
 /// The handler decides whether macOS receives an event; this class never assumes every media key should be consumed.
 final class MediaKeyCapture {
+    /// Prompts macOS for the Accessibility trust this global event tap requires.
+    /// macOS owns this approval; the app cannot grant, bypass, or automate it.
+    static func requestAccessibilityPermission() -> Bool {
+        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary
+        return AXIsProcessTrustedWithOptions(options)
+    }
     private enum KeyCode: Int {
         case volumeUp = 0
         case volumeDown = 1

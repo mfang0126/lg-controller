@@ -5,11 +5,12 @@ struct RouterSettingsSnapshot: Equatable {
     let host: String
     let scheme: String
     let port: Int
-    let targetDisplay: DisplayIdentity?
+    let targetAudioDevice: AudioOutputDevice?
+    let routeOverride: RouteOverride
 
     var isConfigured: Bool {
         guard !host.isEmpty,
-              targetDisplay != nil,
+              targetAudioDevice != nil,
               (scheme == "ws" || scheme == "wss"),
               (1...65_535).contains(port) else {
             return false
@@ -42,13 +43,19 @@ final class RouterSettings {
         static let host = "host"
         static let scheme = "scheme"
         static let port = "port"
-        static let targetDisplay = "targetDisplay"
+        static let targetAudioDevice = "targetAudioDevice"
+        static let routeOverride = "routeOverride"
+        /// v0.1.x stored a display identity; v0.2.0 routes by sound output instead.
+        static let legacyTargetDisplay = "targetDisplay"
     }
 
     private let defaults: UserDefaults
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        // Migration: the v0.1.x display-based selection cannot be reinterpreted as an
+        // audio device, so it is cleared and the app asks for the output device once.
+        defaults.removeObject(forKey: Key.legacyTargetDisplay)
     }
 
     var tvName: String {
@@ -74,20 +81,28 @@ final class RouterSettings {
         set { defaults.set(newValue, forKey: Key.port) }
     }
 
-    var targetDisplay: DisplayIdentity? {
+    var targetAudioDevice: AudioOutputDevice? {
         get {
-            guard let data = defaults.data(forKey: Key.targetDisplay) else { return nil }
-            return try? JSONDecoder().decode(DisplayIdentity.self, from: data)
+            guard let data = defaults.data(forKey: Key.targetAudioDevice) else { return nil }
+            return try? JSONDecoder().decode(AudioOutputDevice.self, from: data)
         }
         set {
             guard let newValue else {
-                defaults.removeObject(forKey: Key.targetDisplay)
+                defaults.removeObject(forKey: Key.targetAudioDevice)
                 return
             }
             if let data = try? JSONEncoder().encode(newValue) {
-                defaults.set(data, forKey: Key.targetDisplay)
+                defaults.set(data, forKey: Key.targetAudioDevice)
             }
         }
+    }
+
+    var routeOverride: RouteOverride {
+        get {
+            guard let raw = defaults.string(forKey: Key.routeOverride) else { return .auto }
+            return RouteOverride(rawValue: raw) ?? .auto
+        }
+        set { defaults.set(newValue.rawValue, forKey: Key.routeOverride) }
     }
 
     /// The provider receives immutable snapshots so connection work never observes a partial UI edit.
@@ -97,7 +112,8 @@ final class RouterSettings {
             host: host,
             scheme: scheme,
             port: port,
-            targetDisplay: targetDisplay
+            targetAudioDevice: targetAudioDevice,
+            routeOverride: routeOverride
         )
     }
 
@@ -107,12 +123,14 @@ final class RouterSettings {
         host: String,
         scheme: String,
         port: Int,
-        targetDisplay: DisplayIdentity
+        targetAudioDevice: AudioOutputDevice,
+        routeOverride: RouteOverride
     ) {
         self.tvName = tvName
         self.host = host
         self.scheme = scheme
         self.port = port
-        self.targetDisplay = targetDisplay
+        self.targetAudioDevice = targetAudioDevice
+        self.routeOverride = routeOverride
     }
 }

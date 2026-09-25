@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		200000000000000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000001 /* AppDelegate.swift */; };
-		200000000000000000000002 /* DisplayIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000002 /* DisplayIdentity.swift */; };
-		200000000000000000000003 /* FocusScreenResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000003 /* FocusScreenResolver.swift */; };
+		200000000000000000000002 /* AudioOutputResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000002 /* AudioOutputResolver.swift */; };
+		200000000000000000000003 /* RoutingPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000003 /* RoutingPolicy.swift */; };
 		200000000000000000000004 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000004 /* KeychainStore.swift */; };
 		200000000000000000000005 /* MediaKeyCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000005 /* MediaKeyCapture.swift */; };
 		200000000000000000000006 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100000000000000000000006 /* MenuBarController.swift */; };
@@ -22,8 +22,8 @@
 
 /* Begin PBXFileReference section */
 		100000000000000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		100000000000000000000002 /* DisplayIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayIdentity.swift; sourceTree = "<group>"; };
-		100000000000000000000003 /* FocusScreenResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusScreenResolver.swift; sourceTree = "<group>"; };
+		100000000000000000000002 /* AudioOutputResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutputResolver.swift; sourceTree = "<group>"; };
+		100000000000000000000003 /* RoutingPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPolicy.swift; sourceTree = "<group>"; };
 		100000000000000000000004 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		100000000000000000000005 /* MediaKeyCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaKeyCapture.swift; sourceTree = "<group>"; };
 		100000000000000000000006 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
@@ -59,8 +59,8 @@
 			children = (
 				100000000000000000000001 /* AppDelegate.swift */,
 				100000000000000000000011 /* ProductConfiguration.swift */,
-				100000000000000000000002 /* DisplayIdentity.swift */,
-				100000000000000000000003 /* FocusScreenResolver.swift */,
+				100000000000000000000002 /* AudioOutputResolver.swift */,
+				100000000000000000000003 /* RoutingPolicy.swift */,
 				100000000000000000000004 /* KeychainStore.swift */,
 				100000000000000000000005 /* MediaKeyCapture.swift */,
 				100000000000000000000006 /* MenuBarController.swift */,
@@ -148,8 +148,8 @@
 			files = (
 				200000000000000000000001 /* AppDelegate.swift in Sources */,
 				200000000000000000000011 /* ProductConfiguration.swift in Sources */,
-				200000000000000000000002 /* DisplayIdentity.swift in Sources */,
-				200000000000000000000003 /* FocusScreenResolver.swift in Sources */,
+				200000000000000000000002 /* AudioOutputResolver.swift in Sources */,
+				200000000000000000000003 /* RoutingPolicy.swift in Sources */,
 				200000000000000000000004 /* KeychainStore.swift in Sources */,
 				200000000000000000000005 /* MediaKeyCapture.swift in Sources */,
 				200000000000000000000006 /* MenuBarController.swift in Sources */,

@@ -1,4 +1,3 @@
-import ApplicationServices
 import Foundation
 
 enum RouterStatus: Equatable {
@@ -12,7 +11,7 @@ enum RouterStatus: Equatable {
 final class VolumeRouter {
     private let settings: RouterSettings
     private let provider: WebOSProvider
-    private let focusResolver: FocusScreenResolver
+    private let audioOutputResolver: AudioOutputResolver
     private lazy var mediaKeyCapture: MediaKeyCapture = {
         MediaKeyCapture { [weak self] action in
             self?.handleMediaKey(action) ?? false
@@ -26,11 +25,11 @@ final class VolumeRouter {
     init(
         settings: RouterSettings,
         provider: WebOSProvider,
-        focusResolver: FocusScreenResolver = FocusScreenResolver()
+        audioOutputResolver: AudioOutputResolver = AudioOutputResolver()
     ) {
         self.settings = settings
         self.provider = provider
-        self.focusResolver = focusResolver
+        self.audioOutputResolver = audioOutputResolver
         self.providerState = provider.currentState
 
         provider.stateHandler = { [weak self] state in
@@ -57,7 +56,7 @@ final class VolumeRouter {
             return false
         }
 
-        _ = FocusScreenResolver.requestAccessibilityPermission()
+        _ = MediaKeyCapture.requestAccessibilityPermission()
         guard mediaKeyCapture.start() else {
             providerState = .unavailable
             publishStatus()
@@ -91,17 +90,17 @@ final class VolumeRouter {
         provider.resetPairing()
     }
 
-    /// Returns true only when the event belongs to the configured display.
-    /// Returning false leaves the original system media-key event untouched.
+    /// Returns true only when the audio the user is hearing belongs to the configured
+    /// TV output device (or the user forced routing). Returning false leaves the
+    /// original system media-key event untouched.
     func handleMediaKey(_ action: MediaKeyAction) -> Bool {
-        guard isEnabled,
-              let target = settings.snapshot.targetDisplay,
-              let focusedScreen = focusResolver.focusedScreen() else {
-            return false
-        }
-
-        let focusedDisplay = DisplayIdentity.from(screen: focusedScreen)
-        guard target.matches(focusedDisplay) else {
+        guard isEnabled else { return false }
+        let snapshot = settings.snapshot
+        guard RoutingPolicy.shouldRoute(
+            target: snapshot.targetAudioDevice,
+            current: audioOutputResolver.currentDefaultOutput(),
+            override: snapshot.routeOverride
+        ) else {
             return false
         }
 

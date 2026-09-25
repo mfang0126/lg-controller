@@ -11,8 +11,12 @@ CLI_SOURCES := \
 	LGVolumeRouter/ProductConfiguration.swift \
 	LGVolumeRouter/WebOSMessage.swift \
 	LGVolumeRouter/KeychainStore.swift
+TEST_BINARY := $(DERIVED_DATA)/policy-tests
+TEST_SOURCES := \
+	LGVolumeRouter/RoutingPolicy.swift \
+	tests/RoutingPolicyTests.swift
 
-.PHONY: all app cli run-app clean help
+.PHONY: all app cli test run-app clean help
 
 all: app cli
 
@@ -32,6 +36,12 @@ cli:
 	mkdir -p "$(DERIVED_DATA)"
 	xcrun swiftc -O -o "$(CLI_PATH)" $(CLI_SOURCES)
 
+## Run the routing-decision matrix tests (swiftc direct; no Xcode test target).
+test:
+	mkdir -p "$(DERIVED_DATA)"
+	xcrun swiftc -o "$(TEST_BINARY)" $(TEST_SOURCES)
+	"$(TEST_BINARY)"
+
 run-app: app
 	open "$(APP_PATH)"
 
@@ -39,4 +49,4 @@ clean:
 	rm -rf "$(DERIVED_DATA)"
 
 help:
-	@printf '%s\n' 'Targets: all, app, cli, run-app, clean'
+	@printf '%s\n' 'Targets: all, app, cli, test, run-app, clean'
